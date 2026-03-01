@@ -2,15 +2,14 @@
 import { useEffect, useRef } from 'react';
 import mermaid from 'mermaid';
 
-mermaid.initialize({ startOnLoad: true, theme: 'neutral' });
-
 export default function Mermaid({ chart }: { chart: string }) {
   const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    mermaid.initialize({ startOnLoad: true, theme: 'neutral' });
     if (ref.current) {
       const id = 'mermaid-' + Math.random().toString(36).substr(2, 9);
-      mermaid.render(id, chart).then(result => {
+      mermaid.render(id, chart).then((result) => {
         ref.current!.innerHTML = result.svg;
       });
     }
