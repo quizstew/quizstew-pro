@@ -36,12 +36,13 @@ export default function FirewallRulesContent() {
       </ul>
 
       <h2>Input Chain Hardening</h2>
-      <p>Apply drop rules to the Input chain. Order matters: allow established/related, allow management, then drop remainder.</p>
+      <p>Standard v7 Input chain model: drop invalid first, allow established/related, accept ICMP, allow management interfaces, drop remainder.</p>
 
-      <pre><code className="language-routeros">{`/ip firewall filter add chain=input connection-state=established,related action=accept place-before=0
-/ip firewall filter add chain=input protocol=icmp action=accept place-before=1
-/ip firewall filter add chain=input in-interface-list=LAN action=accept place-before=2
-/ip firewall filter add chain=input action=drop place-before=3`}</code></pre>
+      <pre><code className="language-routeros">{`/ip firewall filter add chain=input connection-state=invalid action=drop place-before=0 comment="drop invalid"
+/ip firewall filter add chain=input connection-state=established,related action=accept place-before=1 comment="allow established/related"
+/ip firewall filter add chain=input protocol=icmp action=accept place-before=2 comment="allow ICMP"
+/ip firewall filter add chain=input in-interface-list=LAN action=accept place-before=3 comment="allow LAN management"
+/ip firewall filter add chain=input action=drop place-before=4 comment="drop all others"`}</code></pre>
 
       <h3>Export Backup (RSC)</h3>
       <pre><code className="language-routeros">{`/export file=backup-before-firewall`}</code></pre>
@@ -69,7 +70,7 @@ export default function FirewallRulesContent() {
 
       <h2>Common Pitfalls</h2>
       <ul>
-        <li><strong>Rule order:</strong> <code>established,related</code> must be first. Otherwise return traffic is dropped.</li>
+        <li><strong>Rule order:</strong> Drop invalid first, then <code>established,related</code>, then ICMP, then management, then drop. Wrong order causes lockout or traffic loss.</li>
         <li><strong>Management lockout:</strong> Allow LAN or management interface before the final drop. Test from console first.</li>
         <li><strong>Forward chain:</strong> For routing/NAT, Forward chain rules are separate. Input protects the router; Forward protects transit traffic.</li>
         <li><strong>place-before:</strong> Use <code>place-before=0</code> to insert at top. Verify order with <code>/ip firewall filter print</code>.</li>

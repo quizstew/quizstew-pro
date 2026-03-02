@@ -37,15 +37,25 @@ export default function VlanSetupContent() {
       `} />
       </ProcedureDiagram>
 
-      <h3>Step B–C: Create VLAN Interface</h3>
-      <pre><code className="language-routeros">{`/interface vlan add name=vlan100 vlan-id=100 interface=ether1`}</code></pre>
+      <h3>Step B–C: Routed VLAN (VLAN Interface)</h3>
+      <p>For L3 gateway per VLAN, create a VLAN interface on the physical port:</p>
+      <pre><code className="language-routeros">{`/interface vlan add name=vlan100 vlan-id=100 interface=ether1
+/ip address add address=192.168.100.1/24 interface=vlan100`}</code></pre>
 
-      <h3>Step D: Configure IP</h3>
-      <pre><code className="language-routeros">{`/ip address add address=192.168.100.1/24 interface=vlan100`}</code></pre>
+      <h3>Step D: Bridge VLAN Filtering (v7 L2)</h3>
+      <p>For L2 switching with VLANs, use the RouterOS v7 bridge VLAN table. Create bridge, add ports, define VLANs, enable filtering:</p>
+      <pre><code className="language-routeros">{`/interface bridge add name=bridge1
+/interface bridge port add bridge=bridge1 interface=ether1
+/interface bridge port add bridge=bridge1 interface=ether2
+/interface bridge vlan add bridge=bridge1 tagged=ether1 vlan-ids=100
+/interface bridge vlan add bridge=bridge1 untagged=ether2 vlan-ids=100
+/interface bridge port set [ find interface=ether2 ] pvid=100
+/interface bridge set bridge1 vlan-filtering=yes`}</code></pre>
 
-      <h3>Step D: Bridge (L2)</h3>
-      <pre><code className="language-routeros">{`/interface bridge add name=br-vlan100
-/interface bridge port add bridge=br-vlan100 interface=vlan100`}</code></pre>
+      <h3>Step D: Configure IP (Bridge VLAN)</h3>
+      <p>For L3 on a VLAN in bridge VLAN filtering, create a VLAN interface on the bridge:</p>
+      <pre><code className="language-routeros">{`/interface vlan add name=vlan100 vlan-id=100 interface=bridge1
+/ip address add address=192.168.100.1/24 interface=vlan100`}</code></pre>
 
       <h3>Step D: IP and Bridge</h3>
       <p>
@@ -80,6 +90,7 @@ export default function VlanSetupContent() {
         <li><strong>Trunk vs access:</strong> Upstream switch port must be trunk (tagged) if carrying multiple VLANs.</li>
         <li><strong>Bridge vs routed:</strong> Bridge for L2 switching; routed VLAN for L3 gateway per VLAN.</li>
         <li><strong>VLAN ID mismatch:</strong> vlan-id must match the tagged traffic from the upstream device.</li>
+        <li><strong>Bridge VLAN lockout:</strong> Enabling <code>vlan-filtering=yes</code> without a VLAN including the management port drops untagged traffic. Ensure management interface has correct pvid and bridge vlan entry before enabling.</li>
       </ul>
     </>
   );
