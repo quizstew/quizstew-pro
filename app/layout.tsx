@@ -22,12 +22,12 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased bg-gray-950 text-gray-100 overflow-x-hidden min-h-screen`}>
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased overflow-x-hidden min-h-screen`} style={{ backgroundColor: 'var(--background)', color: 'var(--foreground)' }}>
         <Navbar />
         <main className="w-full px-4 md:px-8 lg:max-w-4xl mx-auto overflow-x-hidden">
           {children}
         </main>
-        <footer className="p-4 md:p-6 border-t border-gray-800 mt-10 text-center text-sm text-gray-400">
+        <footer className="p-4 md:p-6 border-t border-surface-border mt-10 text-center text-sm text-gray-400">
           <div className="flex flex-col sm:flex-row sm:justify-center sm:items-center gap-2">
             <span>© 2026 Mikrotik Command Center</span>
             <span className="hidden sm:inline">|</span>

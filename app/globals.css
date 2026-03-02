@@ -2,13 +2,16 @@
 @plugin "@tailwindcss/typography";
 
 :root {
-  --background: #030712; /* gray-950 */
-  --foreground: #f3f4f6; /* gray-100 */
+  --background: #1f2226;
+  --foreground: #f0f0f0;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-surface: #1f2226;
+  --color-surface-border: #2c3342;
+  --color-accent: #64b5f6;
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
@@ -27,4 +30,9 @@ body {
 /* Prose and content don't overflow on narrow viewports */
 .prose {
   max-width: 100%;
+}
+
+.procedure-diagram {
+  border-radius: 1.5rem;
+  width: 100%;
 }

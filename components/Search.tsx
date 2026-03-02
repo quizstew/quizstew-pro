@@ -8,8 +8,8 @@ export default function Search({ items }: { items: { title: string; desc: string
 
   const filtered = items.filter(
     (item) =>
-      item.title.toLowerCase().includes(query.toLowerCase()) ||
-      item.desc.toLowerCase().includes(query.toLowerCase())
+      (item.title ?? '').toLowerCase().includes(query.toLowerCase()) ||
+      (item.desc ?? '').toLowerCase().includes(query.toLowerCase())
   );
 
   return (

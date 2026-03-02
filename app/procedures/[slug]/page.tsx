@@ -26,7 +26,7 @@ export default async function ProcedurePage({ params }: Props) {
 
   return (
     <article className="prose prose-invert lg:prose-xl py-8 px-4 mx-auto">
-      <nav className="text-sm text-gray-500 mb-4 not-prose">
+      <nav className="text-sm text-gray-400 mb-4 not-prose">
         <Link href="/procedures" className="hover:text-white">
           ← Procedures
         </Link>

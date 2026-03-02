@@ -7,7 +7,7 @@ export default function Navbar() {
   const [open, setOpen] = useState(false);
 
   return (
-    <nav className="flex flex-col border-b border-gray-800 bg-gray-950">
+    <nav className="flex flex-col border-b border-surface-border bg-surface">
       <div className="flex items-center justify-between p-4 md:p-6">
         <Link
           href="/"
@@ -52,7 +52,7 @@ export default function Navbar() {
 
       {/* Mobile: dropdown links */}
       {open && (
-        <div className="md:hidden border-t border-gray-800 px-4 py-3 flex flex-col gap-2">
+        <div className="md:hidden border-t border-surface-border px-4 py-3 flex flex-col gap-2">
           <Link
             href="/procedures"
             className="text-gray-300 hover:text-emerald-400 py-2"

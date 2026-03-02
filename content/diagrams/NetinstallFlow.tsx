@@ -1,17 +1,10 @@
 import Mermaid from '@/components/Mermaid';
 import ProcedureDiagram from '@/components/ui/ProcedureDiagram';
 
-export const meta = {
-  title: 'Netinstall Recovery',
-  description: 'Recover RouterOS using Netinstall when the device is unresponsive or needs reflashing.',
-  category: 'Hardware',
-};
-
-export default function NetinstallContent() {
+export default function NetinstallFlow() {
   return (
-    <>
-      <h2 className="text-2xl font-semibold mt-10">Netinstall Recovery Flow</h2>
-      <ProcedureDiagram>
+    <ProcedureDiagram>
+      <div className="rounded-4xl overflow-hidden">
         <Mermaid chart={`
         flowchart TD
           A[Power On Device] --> B{LED Blinking?}
@@ -24,7 +17,7 @@ export default function NetinstallContent() {
 
           style G stroke-width:4px
       `} />
-      </ProcedureDiagram>
-    </>
+      </div>
+    </ProcedureDiagram>
   );
 }

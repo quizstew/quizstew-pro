@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import Mermaid from '@/components/Mermaid';
+import ProcedureDiagram from '@/components/ui/ProcedureDiagram';
 
 export const meta = {
   title: 'VPN Tunnels',
@@ -10,11 +11,11 @@ export const meta = {
 export default function VpnTunnelsContent() {
   return (
     <>
-      <div className="border border-blue-500 bg-blue-50/10 p-4 my-4 rounded not-prose">
-        <h4 className="text-blue-400 font-bold">New to VPNs?</h4>
+      <div className="border border-accent bg-surface-border/50 p-4 my-4 rounded not-prose">
+        <h4 className="text-accent font-bold">New to VPNs?</h4>
         <p className="text-sm text-gray-300 mt-1">
           Ensure you understand the basics of{' '}
-          <Link href="/procedures/fundamentals/ip-addressing" className="text-blue-400 underline font-semibold">
+          <Link href="/procedures/fundamentals/ip-addressing" className="text-accent underline font-semibold">
             IP Addressing &amp; Subnets
           </Link>{' '}
           before configuring peer interfaces.
@@ -22,7 +23,8 @@ export default function VpnTunnelsContent() {
       </div>
 
       <h2 className="text-2xl font-semibold mt-10">Tunnel Setup Flow</h2>
-      <Mermaid chart={`
+      <ProcedureDiagram>
+        <Mermaid chart={`
         graph TD
           A[Choose Tunnel Type] --> B{IPsec or WireGuard?}
           B -->|IPsec| C[Configure Phase 1 & 2]
@@ -30,6 +32,7 @@ export default function VpnTunnelsContent() {
           C --> E[Apply Policies]
           D --> E
       `} />
+      </ProcedureDiagram>
     </>
   );
 }
