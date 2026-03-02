@@ -1,4 +1,5 @@
 // app/procedures/[slug]/page.tsx
+import type { Metadata } from 'next';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { getProcedure, procedureSlugs } from '@/content/procedures/registry';
@@ -7,6 +8,21 @@ type Props = { params: Promise<{ slug: string }> };
 
 export async function generateStaticParams() {
   return procedureSlugs.map((slug) => ({ slug }));
+}
+
+const CANONICAL_BASE = 'https://quizstew-pro.vercel.app';
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { slug } = await params;
+  const procedure = getProcedure(slug);
+  if (!procedure) return {};
+  return {
+    title: procedure.seo?.title ?? procedure.meta.title,
+    description: procedure.seo?.description,
+    alternates: {
+      canonical: `${CANONICAL_BASE}/procedures/${slug}`,
+    },
+  };
 }
 
 export default async function ProcedurePage({ params }: Props) {

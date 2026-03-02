@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import Link from "next/link";
 import Navbar from "@/components/Navbar";
+import FooterDisclaimer from "@/components/FooterDisclaimer";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -15,8 +16,9 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Mikrotik Command Center",
+  title: "RouterOS Command Center",
   description: "Professional recovery & diagnostic workflows for RouterOS.",
+  robots: { index: false, follow: false },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
@@ -29,10 +31,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         </main>
         <footer className="p-4 md:p-6 border-t border-surface-border mt-10 text-center text-sm text-gray-400">
           <div className="flex flex-col sm:flex-row sm:justify-center sm:items-center gap-2">
-            <span>© 2026 Mikrotik Command Center</span>
+            <span>© 2026 RouterOS Command Center</span>
             <span className="hidden sm:inline">|</span>
             <Link href="/legal/privacy" className="text-emerald-400 hover:underline">Privacy</Link>
           </div>
+          <FooterDisclaimer />
         </footer>
       </body>
     </html>

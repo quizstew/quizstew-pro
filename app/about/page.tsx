@@ -1,4 +1,11 @@
+import type { Metadata } from 'next';
 import Link from 'next/link';
+
+export const metadata: Metadata = {
+  title: 'About | RouterOS Hub',
+  description:
+    'Why RouterOS Command Center exists. Field-tested recovery protocols and diagnostic workflows for RouterOS v7+.',
+};
 
 export default function About() {
   return (

@@ -1,4 +1,11 @@
+import type { Metadata } from 'next';
 import Link from 'next/link';
+
+export const metadata: Metadata = {
+  title: 'Privacy & Cookie Policy | RouterOS Hub',
+  description:
+    'Privacy and cookie policy for RouterOS Command Center. Information we collect, use, and your rights.',
+};
 
 export default function Privacy() {
   return (

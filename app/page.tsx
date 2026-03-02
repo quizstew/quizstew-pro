@@ -4,7 +4,7 @@ import { directory } from '@/content/procedures/registry';
 export default function Home() {
   return (
     <div className="prose prose-invert lg:prose-xl py-8">
-      <h1>Mikrotik Command Center</h1>
+      <h1>RouterOS Command Center</h1>
       <p>
         Professional recovery &amp; diagnostic workflows.{' '}
         <Link href="/about" className="text-emerald-400 hover:underline">

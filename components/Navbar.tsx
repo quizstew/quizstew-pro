@@ -14,7 +14,7 @@ export default function Navbar() {
           className="font-bold text-lg md:text-xl text-gray-100 shrink-0"
           onClick={() => setOpen(false)}
         >
-          Mikrotik Hub
+          RouterOS Hub
         </Link>
 
         {/* Desktop: inline links */}

@@ -5,7 +5,7 @@ export default function Sidebar() {
   return (
     <aside className="w-56 shrink-0 border-r border-gray-200 bg-gray-50/80 min-h-screen py-6 px-4">
       <Link href="/" className="block mb-6">
-        <span className="font-bold text-gray-900 text-lg">Mikrotik</span>
+        <span className="font-bold text-gray-900 text-lg">RouterOS</span>
         <span className="font-semibold text-gray-600 text-lg"> Command Center</span>
       </Link>
       <nav className="space-y-1">

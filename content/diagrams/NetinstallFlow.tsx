@@ -3,7 +3,7 @@ import ProcedureDiagram from '@/components/ui/ProcedureDiagram';
 
 export default function NetinstallFlow() {
   return (
-    <ProcedureDiagram>
+    <ProcedureDiagram ariaLabel="Netinstall recovery flowchart">
       <div className="rounded-4xl overflow-hidden">
         <Mermaid chart={`
         flowchart TD

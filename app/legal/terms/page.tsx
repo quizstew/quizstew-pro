@@ -1,4 +1,11 @@
+import type { Metadata } from 'next';
 import Link from 'next/link';
+
+export const metadata: Metadata = {
+  title: 'Terms of Service | RouterOS Hub',
+  description:
+    'Terms of service for RouterOS Command Center. Use of content, liability, and contact.',
+};
 
 export default function Terms() {
   return (

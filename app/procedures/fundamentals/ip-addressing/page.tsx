@@ -32,17 +32,25 @@ export default function IPFundamentals() {
       </div>
 
       <h2>Next Steps</h2>
-      <p>Now that you understand the address space, you can safely configure your:</p>
+      <p>With address space understood, proceed to:</p>
       <ul>
         <li>
+          <Link href="/procedures/vlan-setup" className="text-emerald-400 hover:underline">
+            VLAN Configuration
+          </Link>{' '}
+          — for VLAN IP and bridge setup
+        </li>
+        <li>
           <Link href="/procedures/vpn-tunnels" className="text-emerald-400 hover:underline">
-            VPN Tunnel Configuration
-          </Link>
+            VPN Tunnels
+          </Link>{' '}
+          — for peer endpoints and tunnel subnets
         </li>
         <li>
           <Link href="/procedures/firewall-rules" className="text-emerald-400 hover:underline">
-            Firewall Input Chains
-          </Link>
+            Firewall Best Practices
+          </Link>{' '}
+          — for Input chain hardening
         </li>
       </ul>
     </article>
